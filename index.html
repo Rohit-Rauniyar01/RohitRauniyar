@@ -1,0 +1,614 @@
+<!--
+    File: index.html
+    Purpose: Developer portfolio main page
+    Signed by: Rohit
+    Date: 2025-10-16
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit | Developer Portfolio</title>
+    <meta name="description" content="Modern developer portfolio with terminal-inspired design">
+    <meta name="author" content="Rohit">
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/animations.css">
+</head>
+<body>
+    <!-- Terminal Boot Screen - signed: Rohit -->
+    <div id="bootScreen" class="boot-screen">
+        <div class="boot-content">
+            <div class="boot-header">
+                <pre class="ascii-art">
+@@@@@@@@@@   @@@@@@@        @@@@@@@    @@@@@@   @@@  @@@  @@@  @@@@@@@          
+@@@@@@@@@@@  @@@@@@@@       @@@@@@@@  @@@@@@@@  @@@  @@@  @@@  @@@@@@@          
+@@! @@! @@!  @@!  @@@       @@!  @@@  @@!  @@@  @@!  @@@  @@!    @@!            
+!@! !@! !@!  !@!  @!@       !@!  @!@  !@!  @!@  !@!  @!@  !@!    !@!      __o   
+@!! !!@ @!@  @!@!!@!        @!@!!@!   @!@  !@!  @!@!@!@!  !!@    @!!    _ \<_   
+!@!   ! !@!  !!@!@!         !!@!@!    !@!  !!!  !!!@!!!!  !!!    !!!   (_)/(_)  
+!!:     !!:  !!: :!!        !!: :!!   !!:  !!!  !!:  !!!  !!:    !!:            
+:!:     :!:  :!:  !:!  :!:  :!:  !:!  :!:  !:!  :!:  !:!  :!:    :!:            
+:::     ::   ::   :::  :::  ::   :::  ::::: ::  ::   :::   ::     ::            
+ :      :     :   : :  :::   :   : :   : :  :    :   : :  :       :             
+                                                                                
+                                                                                                                                                                                                         
+                </pre>
+            </div>
+            <div class="boot-terminal">
+                <p><span class="boot-prompt">[SYSTEM]</span> <span class="boot-text">Initializing system...</span></p>
+                <p><span class="boot-prompt">[BOOT]</span> <span class="boot-text">Loading core modules</span> <span class="boot-dots"></span></p>
+                <p><span class="boot-prompt">[INIT]</span> <span class="boot-text">Mounting file systems</span> <span class="boot-status boot-ok">[OK...]</span></p>
+                <p><span class="boot-prompt">[LOAD]</span> <span class="boot-text">Starting network services</span> <span class="boot-status boot-ok">[OK...]</span></p>
+                <p><span class="boot-prompt">[EXEC]</span> <span class="boot-text">Loading portfolio.sh</span> <span class="boot-dots"></span></p>
+                <p><span class="boot-prompt">[INIT]</span> <span class="boot-text">Initializing user interface</span> <span class="boot-status boot-ok">[OK...]</span></p>
+                <p><span class="boot-prompt">[DONE]</span> <span class="boot-text">System ready</span> <span class="boot-status boot-ready">[READY]</span></p>
+            </div>
+            <div class="boot-progress">
+                <div class="boot-progress-bar"></div>
+            </div>
+            <p class="boot-footer">Wait untill it is redirecting.... <span class="boot-sign">— Rohit</span></p>
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-content">
+            <div class="logo">&gt; gring.sh <span class="logo-sign">0</span>xRohit</div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" onclick="closeMenu()">About</a>
+                <a href="#skills" onclick="closeMenu()">Skills</a>
+                <a href="#experience" onclick="closeMenu()">Experience</a>
+                <a href="#education" onclick="closeMenu()">Education</a>
+                <a href="#certifications" onclick="closeMenu()">Certifications</a>
+                <a href="#projects" onclick="closeMenu()">Projects</a>
+                <a href="#blog" onclick="closeMenu()">Blog</a>
+                <a href="#contact" onclick="closeMenu()">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <div class="tag">// CyberSecurity</div>
+            <h1>ROHIT <small class="inline-sign">(rohit)</small></h1>
+            <p class="subtitle">Securing digital assets — crafted by Rohit</p>
+            
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                </div>
+                <div class="terminal-text">
+                    <p><span class="prompt">$</span> <span class="command">./get_profile.sh</span></p>
+                    <p class="output">My expertise in:</p>
+                    <p class="output"><span class="prompt">&gt;</span> Security Operation Center (SOC)</p>
+                    <p class="output"><span class="prompt">&gt;</span> Vulnerability Assissment</p>
+                    <p class="output"><span class="prompt">&gt;</span> Penetration Testing</p>
+                    <br>
+                    <p><span class="prompt">$</span> <span class="command">cat contact.txt</span></p>
+                    <p class="output">GitHub: <a href="https://github.com/Rohit-Rauniyar01" target="_blank" class="link">github.com/Rohit</a> <span class="muted">· by Rohit</span></p>
+                    <br>
+                    <p><span class="prompt">$</span> <span class="output">sudo</span><span style="animation: blink 1s infinite;"> / </span></p>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <!-- <a href="src/assets/images/Rohit_Rauniyar.pdf" class="btn btn-secondary">View Resume</a> -->
+                <!-- Quick sign -->
+                <span class="cta-sign">signed: Rohit</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="about-content fade-in">
+                <div class="about-text">
+                    <p class="about-intro">
+                        Hi! I'm <span class="highlight">Rohit</span>, a passionate CyberSecurity & Ethical Hacking 
+                        who loves Attack and Defent the security Assets with robust security measures.. <span class="about-sign">$|_Rohit</span>
+                    </p>
+                    <p>
+                        With a strong foundation in Defending of Security Assets, I specialize in 
+                        SIEM Tools, Endpoint Detection & Response(EDR), Cloudstrike
+                        My work is driven by a passion for Securing, Finding Vulnerability, 
+                        and pushing the boundaries of what's possible on the securing Digital Assets
+                        and ensuring robust security measures.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Years of Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">7+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1+ </div>
+                            <div class="stat-label">Vulnerability Found</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <div class="code-dot dot-red"></div>
+                            <div class="code-dot dot-yellow"></div>
+                            <div class="code-dot dot-green"></div>
+                            <span class="code-title">about.js</span>
+                        </div>
+                        <div class="code-content">
+<pre><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
+                        <span class="code-property">name</span>: <span class="code-string">"rohit"</span>,
+  <span class="code-property">role</span>: <span class="code-string">"CyberSecurity Analyst"</span>,
+  <span class="code-property">location</span>: <span class="code-string">"Nepal"</span>,
+  <span class="code-property">interests</span>: [
+    <span class="code-string">"Security Operation Center (SOC)"</span>,
+    <span class="code-string">"Vulnerability Analysis"</span>,
+    <span class="code-string">"Creating new tools"</span>,
+    <span class="code-string">"Monitering"</span>
+  ],
+  <span class="code-property">currentlyLearning</span>: [
+    <span class="code-string">"Advanced EDR"</span>,
+    <span class="code-string">"Penetration Testing"</span>
+    <span class="code-string">"Bug Bounty"</span>
+  ],
+    <span class="code-property">funFact</span>: <span class="code-string">"I think like a hacker so others can sleep peacefully"</span>
+};</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2> 
+        <div class="skills-grid">
+            <div class="skill-category fade-in">
+                <h3>Networking Fundamental</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Basic Networking</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Network Scanning</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Packet Analysis</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="60%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in" style="animation-delay: 0.1s;">
+                <h3>Scripting & Analysis</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Bash Scripting</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="45%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="60%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Log Analysis</span>
+                        <span>55%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="55%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in" style="animation-delay: 0.2s;">
+                <h3>Tools & Systems</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Window Environment</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Linux</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="65%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Command Line</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="85%"></div>
+                    </div>
+                    <!-- <div class="skill-item">many more...</div> -->
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>CyberSecurity Intern</h3>
+                    <div class="timeline-date">2025 - Present</div>
+                    <p class="timeline-description">
+                        Developing modern web applications with cutting-edge technologies. 
+                        Building responsive and interactive user interfaces with focus on performance and user experience.
+                    </p>
+                    <p style="color:#848484">At <a href="https://www.skillphantomtechnologies.in/" style="color:#00FF8C; text-decoration: none;" target="_blank">SkillPhantom Technology</a></p>
+                </div>
+            </div>
+
+            <!-- <div class="timeline-item fade-in" style="animation-delay: 0.1s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Frontend Developer</h3>
+                    <div class="timeline-date">2023 - 2024</div>
+                    <p class="timeline-description">
+                            Specialized in creating immersive web experiences with advanced CSS animations and JavaScript interactions.
+                            Developed multiple creative projects showcasing interactive animations and experimental UI.
+                        </p>
+                </div>
+            </div> -->
+
+            <!-- <div class="timeline-item fade-in" style="animation-delay: 0.2s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Web Designer</h3>
+                    <div class="timeline-date">2022 - 2023</div>
+                    <p class="timeline-description">
+                        Designed and prototyped user interfaces for various web applications.
+                        Focused on modern design trends and user-centered design principles.
+                    </p>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Bachelor of Technology in Computer Engineering</h3>
+                    <div class="timeline-date">2024 - Pursuing</div>
+                    <p class="timeline-description">
+                        B.Tech in Computer Engineering student, building a strong foundation in computing, problem-solving
+                        and focused on learning and building practical technical skills.
+                    </p>
+                    <p style="color:#848484">At <a href="https://rku.ac.in/" style="color:#00FF8C; text-decoration: none;" target="_blank">RK University</a></p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in" style="animation-delay: 0.1s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Self-Learning & Online Courses</h3>
+                    <div class="timeline-date">2024 - Pursuing</div>
+                    <p class="timeline-description">
+                        Studied cybersecurity principles, network security, ethical hacking, and Vulnerability Assissment.
+                        Specialized in secure web development and protecting applications against cyber threats.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications & Awards</h2>
+        <div class="certifications-grid">
+            <div class="cert-card fade-in">
+                <div class="cert-icon">🏆</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Introduction to Cybersecurity</div>
+                        <div class="cert-issuer">Cisco</div>
+                    </div>
+                </div>
+                <h3>Responsive Web Design</h3>
+                <p class="cert-description">
+                    Completed comprehensive curriculum covering HTML5, CSS3, Flexbox, Grid, and responsive design principles.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2024</span>
+                    <p style="color:#848484" class="cert-link"><a href="https://www.credly.com/badges/6bb218bc-85d0-4171-92e8-12197e9c77d1/linked_in_profile" style="color:#00FF8C; text-decoration: none;" target="_blank" >Verify</a></p>
+
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
+                <div class="cert-icon">🔐</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Cybersecurity job simulation</div>
+                        <div class="cert-issuer">Deloitte Australia</div>
+                    </div>
+                </div>
+                <h3>Ethical Hacking Fundamentals</h3>
+                <p class="cert-description">
+                    Learned penetration testing, vulnerability assessment, and security best practices for web applications.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2024</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.2s;">
+                <div class="cert-icon">⚛️</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">JavaScript</div>
+                        <div class="cert-issuer">Udemy</div>
+                    </div>
+                </div>
+                <h3>Advanced React & Redux</h3>
+                <p class="cert-description">
+                    Mastered modern React patterns, state management, hooks, and building scalable applications.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2023</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.3s;">
+                <div class="cert-icon">🎨</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Design</div>
+                        <div class="cert-issuer">Google</div>
+                    </div>
+                </div>
+                <h3>UX Design Professional</h3>
+                <p class="cert-description">
+                    Comprehensive training in user research, wireframing, prototyping, and usability testing methodologies.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2023</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.4s;">
+                <div class="cert-icon">🌐</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Backend</div>
+                        <div class="cert-issuer">Node.js Foundation</div>
+                    </div>
+                </div>
+                <h3>Node.js Application Developer</h3>
+                <p class="cert-description">
+                    Professional certification in building scalable server-side applications with Node.js and Express.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2023</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.5s;">
+                <div class="cert-icon">⭐</div>
+                <div class="cert-badge award-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Award</div>
+                        <div class="cert-issuer">Hackathon 2024</div>
+                    </div>
+                </div>
+                <h3>Best UI/UX Design Award</h3>
+                <p class="cert-description">
+                    First place winner for innovative interface design and user experience at the Regional Web Dev Hackathon.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2024</span>
+                    <span class="cert-badge-text">🥇 Winner</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <h3>� OmniScan</h3>
+                <p>OMNISCAN is a comprehensive, multi-threaded security testing tool designed for web applications and APIs.<span class="project-sign">(by Rohit)</span></p>
+                <a href="https://github.com/Rohit-Rauniyar01/OmniScan" class="project-link" target="_blank">View Details &rarr;</a>
+            </div>
+            
+            <div class="project-card fade-in" style="animation-delay: 0.1s;">
+                <h3>💻 Network-Traffic-Monitering</h3>
+                <p>This is a comprehensive network monitoring tool built with Python that captures and analyzes network traffic in real-time.</p>
+                <a href="https://github.com/Rohit-Rauniyar01/Network-Traffic-Monitering" class="project-link" target="_blank">View Details &rarr;</a>
+            </div>
+            
+            <div class="project-card fade-in" style="animation-delay: 0.2s;">
+                <h3>🎨 Network Sniffing</h3>
+                <p>Creative design projects focusing on user experience and modern interface design principles.</p>
+                <a href="https://github.com/Rohit-Rauniyar01/CodeAlpha/blob/main/NetworkSniffer.py" class="project-link" target="_blank">View Details &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <h2>Latest Blog Posts</h2>
+        <div class="blog-grid">
+            <div class="blog-card fade-in">
+                <div class="blog-header">
+                    <div class="blog-date">October 15, 2025</div>
+                </div>
+                <div class="blog-body">
+                    <h3>Building Immersive Web Experiences <span class="post-sign">— Rohit</span></h3>
+                    <div class="blog-tags">
+                        <span class="blog-tag">JavaScript</span>
+                        <span class="blog-tag">CSS Animations</span>
+                        <span class="blog-tag">WebGL</span>
+                    </div>
+                    <p>Exploring advanced techniques for creating psychedelic and interactive web experiences using vanilla JavaScript and CSS...</p>
+                    <a href="#" class="project-link">Read More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="blog-card fade-in" style="animation-delay: 0.1s;">
+                <div class="blog-header">
+                    <div class="blog-date">October 10, 2025</div>
+                </div>
+                <div class="blog-body">
+                    <h3>Modern Web Design Trends</h3>
+                    <div class="blog-tags">
+                        <span class="blog-tag">UI/UX</span>
+                        <span class="blog-tag">Design</span>
+                        <span class="blog-tag">Trends</span>
+                    </div>
+                    <p>A deep dive into cyberpunk aesthetics, glassmorphism, and terminal-inspired designs that are shaping the future of web...</p>
+                    <a href="#" class="project-link">Read More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="blog-card fade-in" style="animation-delay: 0.2s;">
+                <div class="blog-header">
+                    <div class="blog-date">October 5, 2025</div>
+                </div>
+                <div class="blog-body">
+                    <h3>Performance Optimization Tips</h3>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Performance</span>
+                        <span class="blog-tag">Optimization</span>
+                        <span class="blog-tag">Best Practices</span>
+                    </div>
+                    <p>Learn how to optimize heavy animations and interactive elements without sacrificing visual appeal and user experience...</p>
+                    <a href="#" class="project-link">Read More &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-grid">
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:roh1tr4un1y4r@gmail.com">roh1tr4un1y4r@gmail.com</a>
+                    <div class="contact-note"><strong>Rohit Rauniyar</strong></div>
+                </div>
+
+                <div class="contact-item fade-in" style="animation-delay: 0.1s;">
+                    <div class="contact-icon">💼</div>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/Rohit-Rauniyar01" target="_blank">github.com/Rohit</a>
+                </div>
+
+                <div class="contact-item fade-in" style="animation-delay: 0.2s;">
+                    <div class="contact-icon">🔗</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/rohitrauniyar-rr/" target="_blank">linkedin.com/in/Rohit</a>
+                </div>
+
+                <div class="contact-item fade-in" style="animation-delay: 0.3s;">
+                    <div class="contact-icon">❎</div>
+                    <h3>Twitter</h3>
+                    <a href="https://x.com/Rohit456321" target="_blank">@Rohit456321</a>
+                </div>
+
+                <div class="contact-item fade-in" style="animation-delay: 0.3s;">
+                    <div class="contact-icon">👨‍💻</div>
+                    <h3>TryHackMe</h3>
+                    <a href="https://tryhackme.com/p/RohitRauniyar" target="_blank">tryhackme</a>
+                </div>
+            </div>
+
+            <div class="contact-form fade-in">
+                <form>
+                    <div class="form-group">
+                        <label>$ name --input</label>
+                        <input type="text" placeholder="Mr.Rohit" required>
+                        <small class="field-sign">Signed by Rohit</small>
+                    </div>
+                    <div class="form-group">
+                        <label>$ email --input</label>
+                        <input type="email" placeholder="Rohit@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>$ message --input</label>
+                        <textarea placeholder="Your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    <p>&copy; 2025 <span class="signature">Rohit</span>. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Made with ❤️ using HTML, CSS & JavaScript</p>
+        <p style="margin-top: 0.25rem; font-size: 0.8rem; color: #bbb;">Site signed and maintained by <strong>Rohit</strong></p>
+    </footer>
+
+
+    <script src="src/js/main.js"></script>
+</body>
+</html>
+
+<!-- End of file - signed: Rohit -->
