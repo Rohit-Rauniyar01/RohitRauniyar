@@ -645,6 +645,9 @@ h2::after {
     font-weight: bold;
     font-size: 0.9rem;
     transition: all 0.3s;
+    position: relative;
+    z-index: 10;
+
 }
 
 .cert-link:hover {
@@ -656,6 +659,7 @@ h2::after {
     color: #FFD700;
     font-weight: bold;
     font-size: 0.9rem;
+    
 }
 
 .projects-grid {
