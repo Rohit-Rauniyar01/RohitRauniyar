@@ -6,6 +6,46 @@
 */
 // Boot Screen Animation
 document.addEventListener('DOMContentLoaded', () => {
+    // Sanitize URL immediately on load to prevent unsafe or unexpected URL parts
+    (function sanitizeUrl() {
+        try {
+            const url = new URL(window.location.href);
+
+            // Normalize pathname: remove duplicate slashes and resolve '.' and '..'
+            const parts = url.pathname.split('/').filter(Boolean);
+            const normalizedParts = [];
+            parts.forEach(p => {
+                if (p === '..') {
+                    normalizedParts.pop();
+                } else if (p !== '.') {
+                    normalizedParts.push(p);
+                }
+            });
+            const normalizedPath = '/' + normalizedParts.join('/');
+
+            // Strip search/query parameters entirely (keep none)
+            const sanitizedSearch = '';
+
+            // Allow only safe fragment identifiers (alphanumeric, hyphen, underscore)
+            let sanitizedHash = '';
+            if (url.hash) {
+                const candidate = url.hash.replace(/^#/, '');
+                if (/^[A-Za-z0-9_\-]+$/.test(candidate)) {
+                    sanitizedHash = '#' + candidate;
+                }
+            }
+
+            const sanitized = url.origin + normalizedPath + sanitizedSearch + sanitizedHash;
+            const current = window.location.origin + window.location.pathname + window.location.search + window.location.hash;
+            if (sanitized !== current) {
+                history.replaceState(null, document.title, sanitized);
+            }
+        } catch (e) {
+            // If URL parsing fails, do nothing — safer to leave URL unchanged
+            console.warn('URL sanitization skipped:', e);
+        }
+    })();
+
     const bootScreen = document.getElementById('bootScreen');
     
     // Hide boot screen after animation completes
@@ -26,6 +66,93 @@ document.addEventListener('DOMContentLoaded', () => {
     
     document.addEventListener('keydown', skipBoot, { once: true });
     bootScreen.addEventListener('click', skipBoot, { once: true });
+
+    // Reveal obfuscated contact details at runtime
+    (function revealContact() {
+        try {
+            const emailEl = document.getElementById('contactEmail');
+            if (emailEl) {
+                const user = emailEl.dataset.user || '';
+                const domain = emailEl.dataset.domain || '';
+                if (user && domain) {
+                    const email = user + '@' + domain;
+                    emailEl.href = 'mailto:' + email;
+                    emailEl.textContent = email;
+                }
+            }
+
+            const form = document.getElementById('contactForm');
+            if (form) {
+                const proto = form.dataset.proto || '';
+                const path = form.dataset.path || '';
+                if (proto && path) {
+                    // simple cleanup and assignment
+                    form.action = proto.replace(/\s+/g, '') + path;
+                }
+            }
+        } catch (e) {
+            console.warn('Contact reveal failed:', e);
+        }
+    })();
+
+    // Intercept contact form submission and show popup instead of redirect
+    (function interceptContactSubmit() {
+        function showPopup(message) {
+            const existing = document.getElementById('formPopup');
+            if (existing) existing.remove();
+            const overlay = document.createElement('div');
+            overlay.id = 'formPopup';
+            Object.assign(overlay.style, {
+                position: 'fixed', left: '0', top: '0', width: '100%', height: '100%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(0,0,0,0.45)', zIndex: 9999
+            });
+            const box = document.createElement('div');
+            Object.assign(box.style, {
+                background: '#111', color: '#fff', padding: '1.2rem 1.6rem', borderRadius: '8px',
+                maxWidth: '90%', boxShadow: '0 8px 24px rgba(0,0,0,0.4)', textAlign: 'center'
+            });
+            const p = document.createElement('p');
+            p.textContent = message;
+            p.style.margin = '0 0 1rem';
+            const btn = document.createElement('button');
+            btn.textContent = 'OK';
+            Object.assign(btn.style, { padding: '0.5rem 1rem', borderRadius: '6px', border: 'none', cursor: 'pointer' });
+            btn.addEventListener('click', () => overlay.remove());
+            box.appendChild(p);
+            box.appendChild(btn);
+            overlay.appendChild(box);
+            document.body.appendChild(overlay);
+        }
+
+        try {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                try {
+                    const action = form.action || (form.dataset.proto || '') + (form.dataset.path || '');
+                    const formData = new FormData(form);
+                    const res = await fetch(action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (res.ok) {
+                        showPopup('Message sent successfully — the hacker will contact you soon');
+                        form.reset();
+                    } else {
+                        showPopup('Message failed to send. Please try again later.');
+                    }
+                } catch (err) {
+                    console.warn('Contact submit error:', err);
+                    showPopup('Message failed to send. Please try again later.');
+                }
+            });
+        } catch (e) {
+            console.warn('Contact submit interception failed:', e);
+        }
+    })();
 });
 
 const observerOptions = {
