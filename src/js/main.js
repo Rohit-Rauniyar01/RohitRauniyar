@@ -249,4 +249,107 @@ window.addEventListener('scroll', () => {
     }, 150);
 }, { passive: true });
 
+// Animated Character Interaction - signed: Rohit
+(function initializeCharacter() {
+    const character = document.getElementById('character');
+    if (!character) return;
+
+    const characterBody = character.querySelector('.character-body');
+    const pupils = document.querySelectorAll('.pupil');
+    const eyes = document.querySelectorAll('.eye');
+    
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let isScrolling = false;
+    let scrollTimeout;
+    let lastScrollY = window.scrollY;
+    let characterX = window.innerWidth - 90;
+    let characterY = window.innerHeight - 100;
+
+    // Track mouse movement to make eyes follow
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        // Move pupils to follow mouse
+        pupils.forEach(pupil => {
+            const eye = pupil.parentElement;
+            const eyeRect = eye.getBoundingClientRect();
+            const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+            const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+
+            const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+            const distance = 2; // Pupil movement distance
+            const pupilX = Math.cos(angle) * distance;
+            const pupilY = Math.sin(angle) * distance;
+
+            pupil.style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
+        });
+
+        // Wave when user moves mouse around character
+        const charRect = character.getBoundingClientRect();
+        const distToMouse = Math.hypot(
+            mouseX - (charRect.left + charRect.width / 2),
+            mouseY - (charRect.top + charRect.height / 2)
+        );
+
+        if (distToMouse < 150) {
+            character.classList.add('waving');
+        } else {
+            character.classList.remove('waving');
+        }
+    });
+
+    // React to scrolling
+    window.addEventListener('scroll', () => {
+        const scrollDelta = Math.abs(window.scrollY - lastScrollY);
+        lastScrollY = window.scrollY;
+
+        if (scrollDelta > 5) {
+            isScrolling = true;
+            character.classList.add('scrolling');
+            character.classList.add('excited');
+
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+                character.classList.remove('scrolling');
+                character.classList.remove('excited');
+            }, 1000);
+        }
+    }, { passive: true });
+
+    // Position character based on scroll - makes it "sticky"
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        // Character stays in viewport corner but follows scroll slightly
+        characterY = Math.min(window.innerHeight - 100, 50 + scrollY * 0.1);
+        character.style.bottom = (window.innerHeight - characterY) + 'px';
+    }, { passive: true });
+
+    // Adjust character position on window resize
+    window.addEventListener('resize', () => {
+        const newRight = Math.max(20, window.innerWidth - characterX);
+        if (newRight < window.innerWidth) {
+            character.style.right = newRight + 'px';
+        }
+    });
+
+    // Add subtle floating animation that syncs with character mood
+    character.classList.add('floating');
+
+    // Random expressions occasionally
+    setInterval(() => {
+        const mouth = character.querySelector('.character-mouth');
+        if (Math.random() > 0.7 && !isScrolling) {
+            // Happy expression
+            mouth.style.borderRadius = '0 0 12px 12px';
+            mouth.style.height = '8px';
+        } else {
+            mouth.style.borderRadius = '0 0 12px 12px';
+            mouth.style.height = '6px';
+        }
+    }, 3000);
+})();
+
 // End of file - signed: RohitRauniyar
