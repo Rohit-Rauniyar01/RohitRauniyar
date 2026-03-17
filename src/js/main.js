@@ -6,7 +6,6 @@
 */
 // Boot Screen Animation
 document.addEventListener('DOMContentLoaded', () => {
-    // Sanitize URL immediately on load to prevent unsafe or unexpected URL parts
     (function sanitizeUrl() {
         try {
             const url = new URL(window.location.href);

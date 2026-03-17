@@ -1,8 +1,8 @@
-/* signed: serozr */
+/* signed: rohit */
 /*
     File: animations.css
     Purpose: animation keyframes used across the site
-    Signed by: serozr
+    Signed by: rohit
 */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
